@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>2D Arrays</title>
+  </head>
+  <body></body>
+
+  <style>
+    #stage {
+      position: relative;
+    }
+
+    .cell {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 1px solid black;
+      background-color: white;
+    }
+  </style>
+
+  <div id="stage"></div>
+
+  <script>
+    var stage = document.querySelector("#stage");
+    var pattern = [
+      [1, 0, 1, 2, 3, 4, 3, 4],
+      [0, 1, 0, 3, 4, 1, 2, 1],
+      [1, 0, 1, 3, 4, 2, 1, 0],
+      [1, 0, 1, 2, 3, 4, 3, 4],
+      [0, 1, 0, 3, 4, 1, 2, 1],
+      [1, 0, 1, 3, 4, 2, 1, 0],
+      [1, 0, 1, 2, 3, 4, 3, 4],
+      [1, 0, 1, 3, 4, 2, 1, 0],
+    ];
+    var SIZE = 30;
+    var SPACE = 10;
+
+    var ROWS = 8;
+    var COLUMNS = 8;
+    cagao();
+    var interval = setInterval(cagao, 500);
+
+    function cagao() {
+      for (row = 0; row < ROWS; row++) {
+        for (var column = 0; column < COLUMNS; column++) {
+          pattern[row][column] = Math.floor(Math.random() * 6);
+
+          var cell = document.createElement("div");
+          cell.setAttribute("class", "cell");
+
+          stage.appendChild(cell);
+
+          if (pattern[row][column] === 0) {
+            cell.style.backgroundColor = "black";
+          }
+          if (pattern[row][column] === 1) {
+            cell.style.backgroundColor = "red";
+          }
+          if (pattern[row][column] === 2) {
+            cell.style.backgroundColor = "yellow";
+          }
+          if (pattern[row][column] === 3) {
+            cell.style.backgroundColor = "orange";
+          }
+          if (pattern[row][column] === 4) {
+            cell.style.backgroundColor = "green";
+          }
+          cell.style.top = row * (SIZE + SPACE) + "px";
+          cell.style.left = column * (SIZE + SPACE) + "px";
+        }
+      }
+    }
+  </script>
+</html>
